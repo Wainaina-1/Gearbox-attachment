@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color: lightblue;">
+<h1 style="color:blue;">MODULE 3</h1>
+<hr>
+<h2>Introduction to embedded systems</h2>
+<hr>
+This module mainly focuses on common electronic components used in embedded systems.
+<p>
+<h3>Theory</h3>
+<u>Definitions:</u>
+<br>
+-An Electronic circuit is a complete circular path that electricity flows through. It directs and controls electric current to perform various functions.
+<br>
+-Electrical components- These are elements of an electronic circuit that perform specific functions tht are in line  wit the flow of electric current.
+<br>
+-Some of the electrical components used are: resistors, LEDs and wires.
+</p>
+<p>
+<h4>Projects done;</h4>
+-The following are the projects I carried out:
+<li>Blinking of both the ESP's internal LED and an external LED</li>
+<li>Fading of an LED</li>
+<br>
+-For the projects carried out I implemented the use of the following components and apparatus:
+<li>LEDs</li>
+<li>Wires</li>
+<li>220 ohm Resistors</li>
+<li>ESP 32</li>
+<li>Breadboard</li>
+<li>A power source</li>
+</p>
+<p>
+<u>PROJECT 1- Blinking of the ESP's internal LED.</u>
+<br>
+-For this first project all that  was required was an ESP 32 and the blinking code found on Arduino IDE.
+<br>
+-After uploading the code to the ESP 32 I was able to see the ESP's internal LED blink.
+<br>
+Below is the code I used for the above project;
+<br>
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  delay(1000);                      // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  delay(1000);                      // wait for a second
+}
+</p>
+
+<u>PROJECT 2- Blinking of an external LED</u>
+<br>
+Procedure:
+<li>I first came up with the code required for the above project and wrote it down on Arduino IDE.</li>
+<li>I then connected the ESP32 to a breadboard using the provied wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the LED would blink.</li>
+<br>
+Results;
+<li>The LED blinked at intervals of 3 seconds after running my code.</li>
+
+
+
+
+
+
+
+</p>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+</html>
