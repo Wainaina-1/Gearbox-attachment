@@ -3,9 +3,9 @@
 <body style="background-color: lightblue;">
 <h1 style="color:blue;">MODULE 3</h1>
 <hr>
-<h2>Introduction to embedded systems</h2>
+<h2>Introduction to varioud kits and their electrical components</h2>
 <hr>
-This module mainly focuses on common electronic components used in embedded systems.
+This module mainly focuses on common electronic components found in various kits and their use in embedded systems.
 <p>
 <h3>Theory</h3>
 <u>Definitions:</u>
@@ -38,17 +38,24 @@ This module mainly focuses on common electronic components used in embedded syst
 -After uploading the code to the ESP 32 I was able to see the ESP's internal LED blink.
 <br>
 Below is the code I used for the above project;
-<br>
+</p>
+<p style="color:darkblue;">
 void setup() {
+    <br>
   // initialize digital pin LED_BUILTIN as an output.
+  <br>
   pinMode(LED_BUILTIN, OUTPUT);
+  <br>
 }
-
-// the loop function runs over and over again forever
+<br>
 void loop() {
+    <br>
   digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+  <br>
   delay(1000);                      // wait for a second
+  <br>
   digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+  <br>
   delay(1000);                      // wait for a second
 }
 </p>
@@ -63,21 +70,103 @@ Procedure:
 Results;
 <li>The LED blinked at intervals of 3 seconds after running my code.</li>
 <br>
-Below is a video showing my results;
+Below is a video showing my results and the code I implemented;
 <br>
-<video width="320" height="240" controls autoplay muted>
+<video width="520" height="240" controls autoplay muted>
   <source src="Blinking of external LED.mp4" type="video/mp4">
   
 Your browser does not support the video tag.
 </video>
+<br>
+-Code used:
+<p style="color:darkblue;">
+const int ledPin = 2;  // Change this to the GPIO pin you're using
+<br>
+void setup() {
+  <br>
+  pinMode(ledPin, OUTPUT);
+  <br>
+}
+<br>
 
-
-
-
-
-
+void loop() {
+    <br>
+  digitalWrite(ledPin, HIGH);  // Turn the LED on
+  <br>
+  delay(1000);                 // Wait for 1 second
+  <br>
+  digitalWrite(ledPin, LOW);   // Turn the LED off
+  <br>
+  delay(1000);                 // Wait for 1 second
+  <br>
+}
+</p>
+<p>
+<u>Project 3: Fading of an external LED</u>
+<br>
+Procedure:
+<br>
+<li>I first came up with the code required for the above project and wrote it down on Arduino IDE.</li>
+<li>I then connected the ESP32 to a breadboard using the provied wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the LED would fade.</li>
+<br>
+Results;
+<br>
+-The LED increased in brightness and then gradually faded.
+<br>
+Below is a video showing my results and the code I implemented;
+<br>
+<video width="520" height="240" controls autoplay muted>
+  <source src="Fading of external LED.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video>
+<br>
+-Code used:
+<p style="color:darkblue;">
+   ledPin = 5;<br>
+<br>
+setup() {<br>
+pinMode(ledPin, OUTPUT);<br>
+}<br>
+<br>
+loop() {<br>
+for (brightness = 0; brightness <= 255; brightness++) {<br>
+analogFade(ledPin, brightness);<br>
+}<br>
+<br>
+for (brightness = 255; brightness >= 0; brightness--) {<br>
+analogFade(ledPin, brightness);<br>
+}<br>
+}<br>
+<br>
+analogFade(pin, brightness) {<br>
+onTime = map(brightness, 0, 255, 0, 1000);<br>
+cycleTime = 1000;<br>
+<br>
+for (i = 0; i < 5; i++) {<br>
+digitalWrite(pin, HIGH);<br>
+delayMicroseconds(onTime);<br>
+digitalWrite(pin, LOW);<br>
+delayMicroseconds(cycleTime - onTime);<br>
+}
+</p>
+<p>
+<u>Conclusion</u>
+<br>
+-From this week's work I was able to learn a lot about different kits and how to cnnect to an ESP32 using Arduino IDE.
+<br>
+-I was also able to practically simulate some exercises using an ESP32 which improved my understanding of the various electronic components and their application.
 
 </p>
+
+
+
+
+
+
+
+
 
 
 
