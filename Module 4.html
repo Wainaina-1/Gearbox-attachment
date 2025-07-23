@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body style="background-color: lightblue;">
+    <h1 style="color:blue">MODULE 4</h1>
+    <hr>
+    <h2>Introduction to python and raspberrry pi pico. </h2>
+<hr>
+-This week we were able to look at how to work with a raspberry pi pico and the various coding languages that allow us to do so such as: python and micro-python.
+<br>
+-After learning some python and micro-python basics I started working with the raspberry pi pico to carry out simple projects such as blinking the internal and external LED.
+<br>
+-To carry out the projects stated above I also installed and used Thonny IDE which was useful in working with the raspberry.
+<br>
+<h3>Projects done:</h3>
+<u>Project 1- Blinling of the onboard LED. </u>
+<br>
+-For this project all that was required was a raspberry pi pico and a blinking code.
+<br>
+-Code used:
+<p style="color:darkblue;">
+from machine import Pin
+<br>
+from time import sleep
+<br>
+led = Pin(25, Pin.OUT)
+<br>
+while True:
+<br>
+    led.toggle()  # Turns LED on/off
+    <br>
+    sleep(1)      # Wait for 1 second
+    <br>
+</p>
+Results;
+-The onboard LED blinked at intervals of 1 second.
+<br>
+<u>Project 2- Blinking of the external LED.</u>
+<br>
+-For this project we were meant to blink an external LED using a raspberry pi.
+<br>
+Apparatus and components used:
+<br>
+<li>Raspberry pi pico</li>
+<li>Breadboard</li>
+<li>LEDs</li>
+<li>220 ohm resistors</li>
+<li>Connecting cables</li>
+<br>
+-Code used:
+<p style="color:darkblue;">
+    from machine import Pin<br>
+from time import sleep<br>
+
+led = Pin(15, Pin.OUT)  # External LED on GPIO 15
+<br>
+while True:<br>
+    led.value(1)          # Turn LED on<br>
+    sleep(1)            # Wait 1 second<br>
+    led.value(0)           # Turn LED off<br>
+    sleep(1)            # Wait 1 second<br>
+</p>
+<br>
+Results;
+<br>
+-The external LED blinked in intervals of 1 second and below is a video accurately potraying what I did.
+<br>
+<video width="520" height="240" controls autoplay muted>
+  <source src="Raspberry pi blinking LED.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video> 
+
+
+</body>
+
+</html>
