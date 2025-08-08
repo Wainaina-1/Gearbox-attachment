@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<body style="background-color: lightblue;">
+<h1 style="color:blue;">MODULE 6</h1>
+<hr>
+<h2>Sensors</h2>
+<hr>
+- For this week's work I looked at sensors and their various applications and from my research this what I learn;
+<p>
+    Definition- A sensor is a device that detects changes in its environment—such as light, temperature, pressure, motion, or chemical composition—and converts those changes into measurable electrical signals.
+<br>
+How sensors are classified:<br>
+<br>
+By power requirement:
+<li> Active: Require external power to operate.</li>
+<li> Passive: Generate signals directly from the stimulus, without external power.</li>
+<br>
+
+By output type:
+<li>Analog: Provide continuous signals (e.g., varying voltage, current, or resistance).</li>
+<li> Digital: Output discrete values, like binary data for microcontrollers.</li>
+<br>
+
+By sensing method or property:
+<li> Temperature (e.g., thermocouples, RTDs, thermistors)</li>
+<li> Pressure (e.g., piezoelectric, capacitive, strain gauge)</li>
+<li> Light/Optical (e.g., photodiodes, photoelectric sensors)</li>
+<li> Proximity/Motion (e.g., inductive, capacitive, ultrasonic, PIR)</li>
+<li>Chemical/Gas (e.g., gas detectors, biosensors)</li>
+<li>Position/Angle (e.g., encoders, accelerometers, gyroscopes)</li>
+<li>Force/Weight (e.g., strain gauges, load cells)</li>
+<li>Color, Humidity, pH, Tilt, Sound, Touch, Radiation, Magnetic etc.</li>
+<br>
+
+Notable specialized types:
+<li> Proximity sensors: Detect objects without contact, used in smartphones and industrial settings.</li>
+
+<li>Occupancy sensors (PIR, ultrasonic, microwave): Detect human presence to control lights or HVAC systems.</li>
+
+<li> Electro-optical sensors: Convert light into electrical signals for applications like automatic lighting or object detection.
+</li>
+
+<br>
+Common applications:
+<li>IoT & Smart Environments: Home automation, agriculture, smart cities.</li>
+<li> Industrial & Automotive: Process control, safety systems, engine monitoring.</li>
+<li> Wearables & Healthcare: Monitoring vital signs and bodily functions.</li>
+<li> Environmental: Tracking air quality, water levels, pollution.</li>
+<li> Consumer Electronics: Features like auto‑rotate screens, touch interfaces, ambient light sensing.</li>
+</p>
+<p>
+- Based on what I learnt about sensors I was able to do two projects using a PIR motion sensor and an ultrasonic sensor.
+<br>
+Components and apparatus used for the projects stated above:
+<li>Raspberry pi pico</li>
+<li>ESP32</li>
+<li>Breadboard</li>
+<li>220 ohm resistor & 1 and 2 kilo-ohm resistors</li>
+<li>Ultasonic sensor(HC-SR04)</li>
+<li>PIR motion sensor</li>
+<li>Connecting cables</li>
+<li>LEDS</li>
+</p>
+<p>
+    <u>Project 1- Using a PIR sensor to detect motion.</u>
+    <br>
+    <br>
+    -For this project I was using a PIR motion sensor which was meant to detect motion and in turn an LED would turn on if there was any motion detected.
+<br>
+Procedure:
+<li>I first came up with the code required for the above project and wrote it down on Arduino IDE.</li>
+<li>I then connected the ESP32 to a breadboard using the provided wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the PIR sensor was detecting motion.</li>
+<br>
+</p>
+Code used:
+<p style="color:darkblue;">
+    int sensor = 18; // Set pins for PIR<br>
+int led = 23; // Set pin for LED<br>
+
+void setup() {<br>
+  Serial.begin(115200); // initialize serial monitor<br>
+  pinMode(sensor, INPUT); // set PIR as input<br>
+  pinMode(led, OUTPUT); // set LED as output<br>
+}<br>
+
+void loop() {<br>
+  long state = digitalRead(sensor); // read PIR state<br>
+  if (state == HIGH) {<br>
+    digitalWrite(led, HIGH);<br>
+    Serial.println("Motion detected");<br>
+    delay(100);<br>
+  } else {<br>
+    digitalWrite(led, LOW);<br>
+    Serial.println("No motion detected!");<br>
+    delay(100);<br>
+  }<br>
+}<br>
+
+</p>
+Results;
+-The PIR sensor was able to detect motion and this in turn led to the LED turning on.
+<br>
+-Below is a video showing my results
+<br>
+<br>
+<img src="PIR motion sensor.jpg" alt="PIR motion sensor circuit diagram" style="width:500px;height:600px;">
+<p>
+    <u>Project 2- Measuring distance using an ultrasonic sensor.</u>
+    <br>
+    <br>
+-For this project I used an ultrasonic sensor to measure the distance between an obstacle and the ultrasonic sensor itself.
+<br>
+Procedure:
+<li>I first came up with the code required for the above project and wrote it down on Thonny</li>
+<li>I then connected the Raspberry pi pico to a breadboard using the provided wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the ultrasonic sensor was measuring the distance.</li>
+<br>
+NB: A voltage divider is required to avoid damaging the pins of the raspberry pi since the ultasonic sensor's output is 5V and the pins can only safely accomodate 3.3V.
+</p>
+Code used:
+<p style="color:darkblue;">
+    from machine import Pin, time_pulse_us<br>
+import utime<br>
+<br>
+TRIG_PIN = 3  <br>
+ECHO_PIN = 2<br>
+<br>
+SOUND_SPEED = 343.2  # m/s at ~20°C<br>
+TIMEOUT_US = 30000   # 30 ms -> ~5 m max<br>
+<br>
+trig = Pin(TRIG_PIN, Pin.OUT, value=0)<br>
+echo = Pin(ECHO_PIN, Pin.IN)<br>
+<br>
+def measure_distance_cm(samples: int = 5):<br>
+    """Return the median of N samples in cm (or None if all failed)."""<br>
+    readings = []<br>
+    for _ in range(samples):<br>
+        # Trigger a 10 µs pulse<br>
+        trig.value(0)<br>
+        utime.sleep_us(2)<br>
+        trig.value(1)<br>
+        utime.sleep_us(10)<br>
+        trig.value(0)<br>
+<br>
+        # Measure echo high pulse<br>
+        duration = time_pulse_us(echo, 1, TIMEOUT_US)<br>
+        if duration > 0:  # valid reading<br>
+            distance_cm = (duration / 1_000_000) * (SOUND_SPEED / 2) * 100.0<br>
+            readings.append(distance_cm)<br>
+<br>
+        utime.sleep_ms(50)<br>
+<br>
+    if not readings:<br>
+        return None<br>
+    readings.sort()<br>
+    return readings[len(readings)//2]  # median<br>
+<br>
+def main():<br>
+    try:<br>
+        while True:<br>
+            d = measure_distance_cm()<br>
+            if d is None:<br>
+                print("Out of range / timeout")<br>
+            else:<br>
+                print("Distance: {:.2f} cm".format(d))<br>
+            utime.sleep_ms(200)<br>
+    except KeyboardInterrupt:<br>
+        print("\nStopped.")<br>
+<br>
+if __name__ == "__main__":<br>
+    main()<br>
+
+
+</p>
+<p>
+Results;
+The ultrasonic sensor was able to measure the distance as shown in the video below.
+<br>
+<br>
+<video width="520" height="240" controls autoplay muted>
+  <source src="Ultrasonic sensor measuring distance.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video> 
+<br>
+<br>
+<u>Conclusion</u>
+<br>
+When going through this week's work I was able to learn a lot about sensors and I was able to work with a PIR motion sensor and an ultrasonic sensor which improved my understanding of sensors as well.
+</p>
+
+</body>
+
+
+</html>
