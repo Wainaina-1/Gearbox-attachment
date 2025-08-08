@@ -56,11 +56,11 @@ Common Applications:
     <br>
     -These are the projects I was able to undertake:
     <li>Traffic light system</li>
-<li>Fading of an LED using a potentiometer</li>
 <li>Incorporating a pull up or pull down resistor to switch on an LED using a push button. </li>
 <br>
 Components and apparatus used for the projects:
 <li>Raspberry pi pico</li>
+<li>ESP32</li>
 <li>Breadboard</li>
 <li>220 ohm and 1 kilo-ohm resistors</li>
     <li>Connecting cables</li>
@@ -100,16 +100,67 @@ sleep(5.0)<br>
      Results;<br>
      The LEDs blinked separately at intervals of 5 seconds simulating a traffoc light system.
      <br>
-Below is a video showing my results
+-Below is a video showing my results
+<br>
 <br>
 <video width="520" height="240" controls autoplay muted>
   <source src="Traffic light system.mp4" type="video/mp4">
   
 Your browser does not support the video tag.
 </video> 
+<br>
+<br>
+<u>Project 2: Incorporating a pull down resistor to switch on an LED using a push button..</u>
+<br>
+Procedure;
+<li>I first came up with the code required for the above project and wrote it down on Arduino IDE.</li>
+<li>I then connected the ESP32 to a breadboard using the provied wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the LED would would go n once I pressed the button.</li>
+<br>
+Code used:
+<p style="color:darkblue;">
+    // Pin Definitions<br>
+const int buttonPin = 5;  // Button connected to GPIO4<br>
+const int ledPin = 2;      // LED connected to GPIO2<br>
 
+void setup() {<br>
+  // Set pin modes<br>
+  pinMode(buttonPin, INPUT);    // Use external pull-down resistor<br>
+  pinMode(ledPin, OUTPUT);<br>
 
+  // Turn LED off initially<br>
+  digitalWrite(ledPin, LOW);<br>
+}<br>
 
+void loop() {<br>
+  // Read button state<br>
+  int buttonState = digitalRead(buttonPin);<br>
+
+  // If button is pressed (HIGH), turn on LED<br>
+  if (buttonState == HIGH) {<br>
+    digitalWrite(ledPin, HIGH);<br>
+  } else {<br>
+    digitalWrite(ledPin, LOW);<br>
+  }<br>
+}<br>
+
+</p>
+Results;<br>
+The LED turned on when I pressed the button.
+<br>
+-Below is a video showing my results
+<br>
+<br>
+<video width="520" height="240" controls autoplay muted>
+  <source src="Push button using a pull down resistor.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video> 
+<p>
+<u>Conclusion</u>
+<br>
+When going through this week's work I was able to learn a lot about actuators and I also got a chance to understand how traffic lights work with the help of the project I did.
+</p>
 
 </body>
 
