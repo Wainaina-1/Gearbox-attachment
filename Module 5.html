@@ -3,22 +3,112 @@
 <h1 style ="color:blue">MODULE 5</h1>
 <hr>
 <body style ="background-color: lightblue;">
-    <h2><u>Sensors and actuators.</u></h2>
+    <h2><u>Actuators.</u></h2>
     <hr>
-    <p>
+    <p> 
+- This week's work mostly entailed learning about actuators and conducting a couple of projects using LEDs.
+<br>
+<u>PART 1</u>- I started of with doing some research on actuators and this is what I learnt;
+<br>
+<br>
+Definition; An actuator is a component of a machine that produces force, torque, or displacement, when an electrical, pneumatic or hydraulic input is supplied to it in a system. The effect is usually produced in a controlled way. An actuator translates such an input signal into the required form of mechanical energy.
+<br>
+<p>
+Types of Actuators by Energy Source:
+
+<li>Electric Actuators</li>
+Use electrical energy to generate motion; includes solenoids, electric motors (AC, DC, stepper), and piezoelectric types.
+<br>
+<li>Pneumatic Actuators</li>
+Operate using compressed air, common in industrial automation due to speed, cost-effectiveness, and simplicity.
+<br>
+<li>Hydraulic Actuators</li>
+Utilize pressurized fluid to deliver high force and precision—ideal for heavy-duty applications.
+<br>
+<li>Mechanical Actuators</li>
+Rely on physical elements like screws, gears, cams, or levers to create motion; often manually powered and very reliable.
+<br>
+</p>
+Types of Motion:
+<p>
+<li>Linear Actuators</li>
+Produce straight-line motion—typical forms include piston-based, diaphragm, and screw-driven systems.
+<br>
+<li>Rotary Actuators</li>
+Generate circular or angular movement—for instance, rack-and-pinion mechanisms or vane-style hydraulic units.
+<br>
+</p>
+Common Applications:
+<br>
+• Industrial Automation & Robotics- Positioning, conveyor control, valve actuation
+<br>
+• Automotive- Seat adjustment, throttle control, braking systems
+<br>
+• Aerospace & Defense- Flight control surfaces, landing gear, precise actuation
+<br>
+• Medical Devices- Prosthetics, surgical tools, patient support systems
+<br>
+• Smart Systems- Solar tracking, HVAC control, automated valves
+<br>
+<p>
+    <u>PART 2</u>- Projects using LEDs.
+    <br>
+    <br>
+    -These are the projects I was able to undertake:
+    <li>Traffic light system</li>
+<li>Fading of an LED using a potentiometer</li>
+<li>Incorporating a pull up or pull down resistor to switch on an LED using a push button. </li>
+<br>
+Components and apparatus used for the projects:
+<li>Raspberry pi pico</li>
+<li>Breadboard</li>
+<li>220 ohm and 1 kilo-ohm resistors</li>
+    <li>Connecting cables</li>
+<br>
+<u>Project 1- Traffic light system</u>
+<br>
+Procedure;
+<li>I first came up with the code required for the above project and wrote it down on Thonny.</li>
+<li>I then connected the raspberry pi pico to a breadboard using the provied wires and placed all the other required components on the breadboard connecting them accordingly.</li>
+<li>After cross checking my connections I uploaded and ran my code to see if the LEDs would blink in the form of a traffic light system.</li>
+ <br>
+ Code used:
+ <p style="color:darkblue;">
+ fro machine import pin<br>
+ from time import sleep<br>
+ <br>
+led1 = Pin(2, Pin.OUT) #red<br>
+led2 = Pin(4, Pin.OUT) #yellow<br>
+led3 = Pin(5, Pin.OUT) #green<br>
+<br>
+while true:
+<br>
+<br>
+led1.value(1)<br>
+led2.value(0)<br>
+led3.vlue(0)<br>
+sleep(5.0) #time in seconds<br>
+led1.value(0)<br>
+led2.value(1)<br>
+led3.value(0)<br>
+sleep(5.0)<br>
+led1.value(0)<br>
+led2.value(0)<br>
+led3.value(1)<br>
+sleep(5.0)<br>
+     </p>
+     Results;<br>
+     The LEDs blinked separately at intervals of 5 seconds simulating a traffoc light system.
+     <br>
+Below is a video showing my results
+<br>
+<video width="520" height="240" controls autoplay muted>
+  <source src="Traffic light system.mp4" type="video/mp4">
+  
+Your browser does not support the video tag.
+</video> 
 
 
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    </p>
 
 
 </body>
